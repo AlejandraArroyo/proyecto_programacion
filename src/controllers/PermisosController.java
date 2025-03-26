@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author Alejandra Arroyo
  */
-public class RolesYPermisosController implements Initializable {
+public class PermisosController implements Initializable {
 
     /**
      * Initializes the controller class.

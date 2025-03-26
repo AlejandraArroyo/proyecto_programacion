@@ -59,7 +59,7 @@ public class MenuPrincipalController implements Initializable {
 
     @FXML
     private void mostrarRol(ActionEvent event) {
-        cargarVista("/vistas/RolesYPermisos.fxml");
+        cargarVista("/vistas/Roles.fxml");
     }
 
     @FXML
