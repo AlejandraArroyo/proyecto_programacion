@@ -1,0 +1,75 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.root {
+    -fx-font-family: "Arial";
+    -fx-background-color: #d0e1e2;
+}
+
+
+.button {
+    -fx-background-color: linear-gradient(to bottom, #2C3E50, #184554);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 15px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: #184554;
+    -fx-border-width: 2px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 2, 2);
+}
+
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #17aeae, #2C3E50);
+}
+.button:pressed {
+    -fx-background-color: #2C3E50;
+}
+
+
+.text-field {
+    -fx-pref-height: 30px;
+    -fx-font-size: 14px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #2C3E50;
+    -fx-border-width: 1.5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+    -fx-background-color: #ffffff;
+}
+
+
+.text-field:focused {
+    -fx-border-color: #2C3E50;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(21, 101, 192, 0.3), 5, 0, 2, 2);
+}
+
+
+.combo-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #2C3E50;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1.5px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+}
+
+
+.combo-box:hover {
+    -fx-border-color:  #2C3E50;
+}
+
+
+.combo-box:focused {
+    -fx-border-color: #2C3E50;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(230, 81, 0, 0.3), 5, 0, 2, 2);
+}

@@ -1,0 +1,46 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+/*-fx-background-color: #2C3E50; /* Color de fondo */
+-fx-padding: 10px;
+}
+.accordion {
+     -fx-background-color: transparent;
+    -fx-border-radius: 8px; 
+    -fx-padding: 5px;
+    -fx-border-color: transparent;
+}
+
+.titled-pane {
+   
+    -fx-border-radius: 8px;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-padding: 5px;
+    -fx-background-color: transparent; 
+}
+.titled-pane:expanded {
+  -fx-background-color: transparent; 
+    -fx-border-color: transparent;
+}.titled-pane > .title {
+    -fx-background-color:  #2C3E50; 
+    -fx-text-fill: white; 
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+    
+}
+
+
+
+.titled-pane > .title > .arrow-button {
+    -fx-background-color: transparent; 
+}
+
+.titled-pane > .title > .arrow-button > .arrow {
+    -fx-background-color: white; 
+}
+
+

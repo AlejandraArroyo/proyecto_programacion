@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="680.0" prefWidth="1005.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuPrincipalController">
+    <stylesheets>
+        <URL value="@/css/menuprincipal.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane prefHeight="119.0" prefWidth="1077.0" style="-fx-background-color: #17aeae;">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <children>
+            <ImageView fitHeight="118.0" fitWidth="358.0" layoutX="424.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/png-transparent-price-reduction-text-cartoon-creative-market-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="56.0" layoutY="32.0" text="TICKETS">
+               <font>
+                  <Font name="Microsoft YaHei UI" size="43.0" />
+               </font>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.052599091082811356" green="0.05263157933950424" blue="0.05068226158618927" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.1725490242242813" green="0.24313725531101227" blue="0.3137255012989044" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <ImageView fitHeight="55.0" fitWidth="68.0" layoutX="995.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/70cfd994ca8a230.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <VBox layoutY="119.0" prefHeight="618.0" prefWidth="224.0" spacing="10.0" style="-fx-background-color: #2C3E50;">
+         <children>
+            <Accordion>
+              <panes>
+                <TitledPane animated="false" text="Administrar Sistema" textFill="#f8f7f7">
+                     <content>
+                        <VBox spacing="10.0" style="-fx-background-color: #2C3E50;">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#vistaEmpresa" prefHeight="36.0" prefWidth="180.0" style="-fx-background-color: #2C3E50;" text="Empresa" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="bRoles" mnemonicParsing="false" onAction="#mostrarRol" prefHeight="36.0" prefWidth="185.0" style="-fx-background-color: #2C3E50;" text="Roles Y Permisos" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#viewDepartamentos" prefHeight="32.0" prefWidth="185.0" style="-fx-background-color: #2C3E50;" text="Áreas de Trabajo" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </content>
+                </TitledPane>
+                <TitledPane animated="false" text="Gestión de usuarios" textFill="WHITE">
+                     <content>
+                        <VBox spacing="10.0" style="-fx-background-color: #2C3E50;">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#CrearUsuario" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Nuevo Usuario" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Gestionar Usuarios" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </content>
+                </TitledPane>
+                <TitledPane animated="false" text="Configuración de Tickets" textFill="WHITE">
+                     <content>
+                        <VBox spacing="10.0" style="-fx-background-color: #2C3E50;">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#Estadosticket" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Estados de Ticket" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Flujos de trabajo" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </content>
+                </TitledPane>
+                  <TitledPane animated="false" layoutX="10.0" layoutY="36.0" text="Tickets" textFill="WHITE">
+                     <content>
+                        <VBox style="-fx-background-color: #2C3E50;">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Gestión de Tickets" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Crear Ticket" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Mis Tickets" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Pendientes" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </content>
+                  </TitledPane>
+              </panes>
+            </Accordion>
+         </children>
+      </VBox>
+      <StackPane fx:id="contentPane" layoutX="224.0" layoutY="119.0" prefHeight="603.0" prefWidth="849.0" />
+   </children>
+</AnchorPane>

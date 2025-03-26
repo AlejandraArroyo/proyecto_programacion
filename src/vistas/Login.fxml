@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="669.0" prefWidth="725.0" style="-fx-background-color: #2C3E50;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+    <stylesheets>
+        <URL value="@/css/login.css" />
+    </stylesheets>
+   <effect>
+      <DropShadow>
+         <color>
+            <Color red="0.9868420958518982" green="0.9868420958518982" blue="0.9868420958518982" />
+         </color></DropShadow>
+   </effect>
+   <children>
+      <Pane prefHeight="103.0" prefWidth="743.0" style="-fx-background-color: #17aeae;">
+         <children>
+            <Label layoutX="305.0" layoutY="33.0" text="Tickets">
+               <font>
+                  <Font name="Copperplate Gothic Light" size="32.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Pane layoutY="103.0" prefHeight="200.0" prefWidth="743.0" style="-fx-background-color: #e2f3f3;">
+         <children>
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="273.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/20602853_6300959-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Label layoutX="271.0" layoutY="361.0" text="Usuario" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <Label layoutX="269.0" layoutY="427.0" text="Contraseña" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <TextField fx:id="text1" layoutX="269.0" layoutY="389.0" prefHeight="25.0" prefWidth="200.0" />
+      <TextField fx:id="text2" layoutX="269.0" layoutY="455.0" prefHeight="25.0" prefWidth="200.0" />
+      <Button layoutX="303.0" layoutY="529.0" mnemonicParsing="false" onAction="#miBoton" prefHeight="32.0" prefWidth="128.0" text="Ingresar" textFill="#222121">
+         <font>
+            <Font name="Exotc350 DmBd BT Demi-Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
