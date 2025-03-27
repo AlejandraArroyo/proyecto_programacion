@@ -76,5 +76,34 @@ public class MenuPrincipalController implements Initializable {
     private void Estadosticket(ActionEvent event) {
          cargarVista("/vistas/EstadosTicket.fxml");
     }
+
+    @FXML
+    private void crearTicket(ActionEvent event) {
+        
+        cargarVista("/vistas/CrearTicket.fxml");
+    }
+
+    @FXML
+    private void colaAtencion(ActionEvent event) {
+         cargarVista("/vistas/ColaAtencion.fxml");
+    }
+
+    @FXML
+    private void ticketUsuario(ActionEvent event) {
+         cargarVista("/vistas/TicketUsuario.fxml");
+    }
+
+    @FXML
+    private void ticketProceso(ActionEvent event) {
+         cargarVista("/vistas/ProcesoTickets.fxml");
+    }
+
+    @FXML
+    private void gestionarTickets(ActionEvent event) {
+    }
+
+    @FXML
+    private void historialTickets(ActionEvent event) {
+    }
     
 }

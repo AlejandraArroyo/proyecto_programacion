@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="509.0" prefWidth="667.0" style="-fx-background-color: #d0e1e2;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="controllers.TicketUsuarioController">
+    <stylesheets>
+        <URL value="@/css/ticketusuario.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="265.0" layoutY="46.0" text="Mis Tickets">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="28.0" />
+         </font>
+      </Label>
+      <TreeTableView layoutX="65.0" layoutY="132.0" prefHeight="322.0" prefWidth="456.0">
+        <columns>
+          <TreeTableColumn prefWidth="75.0" text="C1" />
+          <TreeTableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TreeTableView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="486.0" prefWidth="649.0" style="-fx-background-color: #d0e1e2;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ColaAtencionController">
+    <stylesheets>
+        <URL value="@/css/colaatencion.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="255.0" layoutY="45.0" text="Cola Tickets">
+         <font>
+            <Font name="Microsoft YaHei UI Light" size="24.0" />
+         </font>
+      </Label>
+      <TableView layoutX="55.0" layoutY="115.0" prefHeight="300.0" prefWidth="514.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

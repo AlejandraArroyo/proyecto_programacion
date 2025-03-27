@@ -126,22 +126,27 @@
                      <content>
                         <VBox style="-fx-background-color: #2C3E50;">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Gestión de Tickets" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#colaAtencion" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Cola de Atención" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Crear Ticket" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#crearTicket" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Crear Ticket" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Mis Tickets" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#ticketUsuario" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Mis Tickets" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Pendientes" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#ticketProceso" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Tickets en Proceso" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#gestionarTickets" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Gestión de tickets" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
