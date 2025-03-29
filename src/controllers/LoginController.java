@@ -41,18 +41,16 @@ public class LoginController implements Initializable {
         
         
     }    
-    
-     // Asegúrate de que el fx:id es correcto
+   
 
     @FXML
     private void miBoton(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/MenuPrincipal.fxml"));
         Parent root = loader.load();
         
-        // Crear una nueva escena
+  
         Scene scene = new Scene(root,1005,680);
         
-        // Crear un nuevo Stage (ventana)
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Nueva Ventana");

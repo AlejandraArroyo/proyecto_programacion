@@ -113,7 +113,7 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Flujos de trabajo" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#flujo" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Flujos de trabajo" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>

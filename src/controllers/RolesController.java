@@ -37,10 +37,7 @@ public class RolesController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/Permisos.fxml"));
         Parent root = loader.load();
         
-        // Crear una nueva escena
         Scene scene = new Scene(root);
-        
-        // Crear un nuevo Stage (ventana)
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Permisos");

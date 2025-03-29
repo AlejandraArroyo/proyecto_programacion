@@ -103,7 +103,8 @@ public class MenuPrincipalController implements Initializable {
     }
 
     @FXML
-    private void historialTickets(ActionEvent event) {
+    private void flujo(ActionEvent event) {
+        cargarVista("/vistas/FlujoTickets.fxml");
     }
     
 }
