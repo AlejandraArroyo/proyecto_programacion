@@ -27,9 +27,9 @@ import javafx.scene.Node;
 public class LoginController implements Initializable {
 
     @FXML
-    private TextField text1;
+    private TextField textUsuario;
     @FXML
-    private TextField text2;
+    private TextField textContra;
 
     /**pero 
      * Initializes the controller class.
@@ -45,20 +45,26 @@ public class LoginController implements Initializable {
 
     @FXML
     private void miBoton(javafx.event.ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/MenuPrincipal.fxml"));
-        Parent root = loader.load();
-        
-  
-        Scene scene = new Scene(root,1005,680);
-        
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Nueva Ventana");
-        stage.show();
-        
-         Stage actualStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        actualStage.close();
-        
+
+        if (textUsuario.getText().trim().isEmpty() || textContra.getText().trim().isEmpty()) {
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Los campos estan vacios");
+            alert.showAndWait();
+        } else {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/MenuPrincipal.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root, 1005, 680);
+
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Nueva Ventana");
+            stage.show();
+
+            Stage actualStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            actualStage.close();
+        }
     }
 
   

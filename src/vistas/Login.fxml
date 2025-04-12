@@ -48,8 +48,8 @@
          <font>
             <Font size="19.0" />
          </font></Label>
-      <TextField fx:id="text1" layoutX="269.0" layoutY="389.0" prefHeight="25.0" prefWidth="200.0" />
-      <TextField fx:id="text2" layoutX="269.0" layoutY="455.0" prefHeight="25.0" prefWidth="200.0" />
+      <TextField fx:id="textUsuario" layoutX="269.0" layoutY="389.0" prefHeight="25.0" prefWidth="200.0" />
+      <TextField fx:id="textContra" layoutX="269.0" layoutY="455.0" prefHeight="25.0" prefWidth="200.0" />
       <Button layoutX="303.0" layoutY="529.0" mnemonicParsing="false" onAction="#miBoton" prefHeight="32.0" prefWidth="128.0" text="Ingresar" textFill="#222121">
          <font>
             <Font name="Exotc350 DmBd BT Demi-Bold" size="18.0" />

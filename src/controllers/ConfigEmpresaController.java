@@ -12,6 +12,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 import java.io.File;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 /**
  * FXML Controller class
@@ -22,12 +27,39 @@ public class ConfigEmpresaController implements Initializable {
 
     @FXML
     private Button btnSeleccionarArchivo;
+    @FXML
+    private TextField txtNombreEmpresa;
 
+    @FXML
+    private ComboBox<String> comboIdioma;
+
+    @FXML
+    private ComboBox<String> comboZonaHoraria;
+
+    @FXML
+    private TextField txtVencimientoTickets;
+
+        @FXML
+    private TextField txtPrioridadNueva;
+
+    @FXML
+    private ListView<String> listPrioridades;
+    private ObservableList<String> prioridades = FXCollections.observableArrayList();
+    @FXML
+    private Button btnGuardar;
+    
+    private File logoEmpresa;
+    
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+    comboIdioma.getItems().addAll("Español", "Inglés");
+    comboZonaHoraria.getItems().addAll("UTC−12:00", "UTC−06:00", "UTC±00:00", "UTC+01:00", "UTC+08:00"); 
+    listPrioridades.setItems(prioridades);
         // TODO
     }    
 
@@ -35,7 +67,7 @@ public class ConfigEmpresaController implements Initializable {
     private void seleccionarArchivo(ActionEvent event) {
         
            FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Seleccionar Archivo");
+        fileChooser.setTitle("Seleccionar logo");
 
         
         fileChooser.getExtensionFilters().addAll(
@@ -46,11 +78,82 @@ public class ConfigEmpresaController implements Initializable {
         Stage stage = (Stage) btnSeleccionarArchivo.getScene().getWindow();
         File archivoSeleccionado = fileChooser.showOpenDialog(stage);
 
-        if (archivoSeleccionado != null) {
+         if (archivoSeleccionado != null) {
+        if (archivoSeleccionado.length() <= 2 * 1024 * 1024) {
+            logoEmpresa = archivoSeleccionado;
             System.out.println("Archivo seleccionado: " + archivoSeleccionado.getAbsolutePath());
         } else {
-            System.out.println("Selección cancelada");
+            Utils.mostrarAlerta("Error", "El archivo seleccionado excede los 2MB.");
         }
+    } else {
+        System.out.println("Selección cancelada");
+    }
+    }
+    
+    @FXML
+    private void agregarPrioridad(ActionEvent event) {
+        
+         String nueva = txtPrioridadNueva.getText().trim();
+
+            if (nueva.isEmpty()) {
+                Utils.mostrarAlerta("Error", "Debe escribir un nivel de prioridad.");
+                return;
+            }
+
+            if (prioridades.contains(nueva)) {
+                Utils.mostrarAlerta("Error", "Esta prioridad ya fue agregada.");
+                return;
+            }
+
+            prioridades.add(nueva);
+            txtPrioridadNueva.clear();
+    }
+
+    @FXML
+    private void guardarConfig(ActionEvent event) {
+
+        String nombreEmpresa = txtNombreEmpresa.getText();
+        String idioma = comboIdioma.getValue();
+        String zonaHoraria = comboZonaHoraria.getValue();
+        String vencimientoStr = txtVencimientoTickets.getText();
+        StringBuilder errores = new StringBuilder();
+
+        if (nombreEmpresa == null || nombreEmpresa.trim().length() < 3 || nombreEmpresa.length() > 100) {
+            errores.append("- El nombre de la empresa debe tener entre 3 y 100 caracteres.\n");
+        }
+        if (idioma == null) {
+            errores.append("- Debe seleccionar un idioma.\n");
+        }
+        if (zonaHoraria == null) {
+            errores.append("- Debe seleccionar una zona horaria.\n");
+        }
+        if (prioridades.size() < 3) {
+            errores.append("- Debe definir al menos tres niveles de prioridad.\n");
+        }
+        
+         int vencimiento = -1;
+    try {
+        vencimiento = Integer.parseInt(vencimientoStr);
+        if (vencimiento < 1 || vencimiento > 365) {
+            errores.append("- El tiempo de vencimiento debe estar entre 1 y 365 días.\n");
+        }
+    } catch (NumberFormatException e) {
+        errores.append("- El tiempo de vencimiento debe ser un número válido.\n");
+    }
+      if (logoEmpresa == null) {
+        errores.append("- Debe seleccionar un logo de la empresa.\n");
+    } else if (logoEmpresa.length() > 2 * 1024 * 1024) {
+        errores.append("- El logo no debe superar los 2MB.\n");
+    }
+        
+        if (errores.length() > 0) {
+        Utils.mostrarAlerta("Errores", errores.toString());
+    } else {
+      
+
+        Utils.mostrarAlerta("Éxito", "La configuración se ha guardado correctamente.");
+    }
+
     }
     
 }
