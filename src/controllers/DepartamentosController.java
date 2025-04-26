@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -44,10 +45,10 @@ public class DepartamentosController implements Initializable {
          
          
          if (errores.length() > 0) {
-        Utils.mostrarAlerta("Errores", errores.toString());
+        Utils.mostrarAlerta(Alert.AlertType.ERROR,"Errores", errores.toString());
     } else {
       
-        Utils.mostrarAlerta("Éxito", "El departamento se ha guardado correctamente.");
+        Utils.mostrarAlerta(Alert.AlertType.INFORMATION,"Éxito", "El departamento se ha guardado correctamente.");
     }
          
          

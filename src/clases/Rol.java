@@ -30,6 +30,10 @@ public class Rol {
         return nombre;
     }
 
+    @Override
+            public String toString() {
+              return nombre; 
+          }
     public void agregarPermiso(Permisos permiso) {
         if (permiso == null) {
             throw new IllegalArgumentException("El permiso no puede ser nulo.");
@@ -51,6 +55,22 @@ public class Rol {
         }
         Rol rol = (Rol) o;
         return Objects.equals(nombre, rol.nombre);
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Set<Permisos> getPermisos() {
+        return permisos;
     }
 
     @Override

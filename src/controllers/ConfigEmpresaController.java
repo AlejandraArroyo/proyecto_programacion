@@ -14,6 +14,7 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -83,7 +84,7 @@ public class ConfigEmpresaController implements Initializable {
             logoEmpresa = archivoSeleccionado;
             System.out.println("Archivo seleccionado: " + archivoSeleccionado.getAbsolutePath());
         } else {
-            Utils.mostrarAlerta("Error", "El archivo seleccionado excede los 2MB.");
+            Utils.mostrarAlerta(Alert.AlertType.ERROR,"Error", "El archivo seleccionado excede los 2MB.");
         }
     } else {
         System.out.println("Selección cancelada");
@@ -96,12 +97,12 @@ public class ConfigEmpresaController implements Initializable {
          String nueva = txtPrioridadNueva.getText().trim();
 
             if (nueva.isEmpty()) {
-                Utils.mostrarAlerta("Error", "Debe escribir un nivel de prioridad.");
+                Utils.mostrarAlerta(Alert.AlertType.ERROR,"Error", "Debe escribir un nivel de prioridad.");
                 return;
             }
 
             if (prioridades.contains(nueva)) {
-                Utils.mostrarAlerta("Error", "Esta prioridad ya fue agregada.");
+                Utils.mostrarAlerta(Alert.AlertType.ERROR,"Error", "Esta prioridad ya fue agregada.");
                 return;
             }
 
@@ -147,11 +148,11 @@ public class ConfigEmpresaController implements Initializable {
     }
         
         if (errores.length() > 0) {
-        Utils.mostrarAlerta("Errores", errores.toString());
+        Utils.mostrarAlerta(Alert.AlertType.ERROR,"Errores", errores.toString());
     } else {
       
 
-        Utils.mostrarAlerta("Éxito", "La configuración se ha guardado correctamente.");
+        Utils.mostrarAlerta(Alert.AlertType.INFORMATION,"Éxito", "La configuración se ha guardado correctamente.");
     }
 
     }

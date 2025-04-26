@@ -12,14 +12,13 @@ import javafx.scene.control.TextInputControl;
  * @author Alejandra Arroyo
  */
 public class Utils {
-       public static void mostrarAlerta(String titulo, String mensaje) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+   public static void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
+        Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
         alerta.showAndWait();
     }
-       
        
         public static boolean campoVacio(TextInputControl campo) {
         return campo.getText() == null || campo.getText().trim().isEmpty();

@@ -4,6 +4,8 @@
  */
 package controllers;
 
+import clases.Dao;
+import clases.Persona;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -19,6 +21,7 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 /**
  * FXML Controller class
  *
@@ -46,24 +49,32 @@ public class LoginController implements Initializable {
     @FXML
     private void miBoton(javafx.event.ActionEvent event) throws IOException {
 
-        if (textUsuario.getText().trim().isEmpty() || textContra.getText().trim().isEmpty()) {
-            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Los campos estan vacios");
-            alert.showAndWait();
-        } else {
+          String usuario = textUsuario.getText().trim();
+        String contrasena = textContra.getText().trim();
+
+        if (usuario.isEmpty() || contrasena.isEmpty()) {
+             Utils.mostrarAlerta(Alert.AlertType.ERROR,"Campos vacíos", "Por favor llena ambos campos.");
+            return;
+        }
+
+        Persona persona = Dao.buscarPorCredenciales(usuario, contrasena);
+
+        if (persona != null) {
+           
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/MenuPrincipal.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root, 1005, 680);
 
+            Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("Nueva Ventana");
+            stage.setTitle("Bienvenido " );
             stage.show();
 
+           
             Stage actualStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             actualStage.close();
+        } else {
+            Utils.mostrarAlerta(Alert.AlertType.ERROR,"Login Fallido", "Usuario o contraseña incorrectos.");
         }
     }
 

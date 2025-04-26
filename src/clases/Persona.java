@@ -17,12 +17,16 @@ public abstract class  Persona {
     public Persona() {
     }
 
-    public Persona(String nombre, String correo, String contra, String nombreUsuario, Rol rol) {
+    public Persona(String nombre, String correo, String contra, String nombreUsuario,  Rol rol) {
         this.nombre = nombre;
         this.correo = correo;
         this.contra = contra;
         this.nombreUsuario = nombreUsuario;
         this.rol = rol;
+    }
+
+    public void setIdentificacion(int identificacion) {
+        this.identificacion = identificacion;
     }
 
     public void setNombre(String nombre) {
@@ -35,6 +39,26 @@ public abstract class  Persona {
 
     public void setContra(String contra) {
         this.contra = contra;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public String getContra() {
+        return contra;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public char getEstado() {
+        return estado;
     }
 
     public void setNombreUsuario(String nombreUsuario) {

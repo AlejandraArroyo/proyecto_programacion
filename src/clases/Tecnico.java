@@ -22,4 +22,8 @@ public class Tecnico extends Persona{
 
         this.departamento = departamento;
     }
+
+    public Departamento getDepartamento() {
+        return departamento;
+    }
 }

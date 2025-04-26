@@ -12,6 +12,9 @@ import java.util.List;
  */
 public class Departamento {
     private String nombre, descripcion;
+
+    private int id;
+   
   
     private ColaAtencion colaAtencion;
 
@@ -20,6 +23,35 @@ public class Departamento {
         this.descripcion = descripcion;
         this.colaAtencion = new ColaAtencion(this); 
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public int getId() {
+        return id;
+    }
+    
+     public void setId(int id) {
+        this.id = id;
+    }
+     
+      @Override
+            public String toString() {
+              return nombre; 
+          }
     
     
     
