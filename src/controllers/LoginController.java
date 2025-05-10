@@ -6,6 +6,7 @@ package controllers;
 
 import clases.Dao;
 import clases.Persona;
+import clases.Sesion;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -60,7 +61,7 @@ public class LoginController implements Initializable {
         Persona persona = Dao.buscarPorCredenciales(usuario, contrasena);
 
         if (persona != null) {
-           
+              Sesion.setUsuarioActual(persona);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/MenuPrincipal.fxml"));
             Parent root = loader.load();
 

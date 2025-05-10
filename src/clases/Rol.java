@@ -73,6 +73,18 @@ public class Rol {
         return permisos;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setPermisos(Set<Permisos> permisos) {
+        this.permisos = permisos;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(nombre);

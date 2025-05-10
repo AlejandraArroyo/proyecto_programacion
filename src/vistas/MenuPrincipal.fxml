@@ -52,32 +52,29 @@
                   </RadialGradient>
                </textFill>
             </Label>
-            <ImageView fitHeight="55.0" fitWidth="68.0" layoutX="995.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/70cfd994ca8a230.png" />
-               </image>
-            </ImageView>
+            <Label fx:id="lblUsuarioLogueado" layoutX="832.0" layoutY="42.0" text="Label" />
+            <Button fx:id="btnSalir" layoutX="986.0" layoutY="19.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Salir" />
          </children>
       </AnchorPane>
       <VBox layoutY="119.0" prefHeight="618.0" prefWidth="224.0" spacing="10.0" style="-fx-background-color: #2C3E50;">
          <children>
-            <Accordion>
+            <Accordion fx:id="miAccordion">
               <panes>
-                <TitledPane animated="false" text="Administrar Sistema" textFill="#f8f7f7">
+                <TitledPane fx:id="paneConfig" animated="false" text="Administrar Sistema" textFill="#f8f7f7">
                      <content>
                         <VBox spacing="10.0" style="-fx-background-color: #2C3E50;">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#vistaEmpresa" prefHeight="36.0" prefWidth="180.0" style="-fx-background-color: #2C3E50;" text="Empresa" textFill="WHITE">
+                              <Button fx:id="btnEmpresa" mnemonicParsing="false" onAction="#vistaEmpresa" prefHeight="36.0" prefWidth="180.0" style="-fx-background-color: #2C3E50;" text="Empresa" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="bRoles" mnemonicParsing="false" onAction="#mostrarRol" prefHeight="36.0" prefWidth="185.0" style="-fx-background-color: #2C3E50;" text="Roles Y Permisos" textFill="WHITE">
+                              <Button fx:id="btnRoles" mnemonicParsing="false" onAction="#mostrarRol" prefHeight="36.0" prefWidth="185.0" style="-fx-background-color: #2C3E50;" text="Roles Y Permisos" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#viewDepartamentos" prefHeight="32.0" prefWidth="185.0" style="-fx-background-color: #2C3E50;" text="Áreas de Trabajo" textFill="WHITE">
+                              <Button fx:id="btnDepartamentos" mnemonicParsing="false" onAction="#viewDepartamentos" prefHeight="32.0" prefWidth="185.0" style="-fx-background-color: #2C3E50;" text="Áreas de Trabajo" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -86,7 +83,7 @@
                         </VBox>
                      </content>
                 </TitledPane>
-                <TitledPane animated="false" text="Gestión de usuarios" textFill="WHITE">
+                <TitledPane fx:id="paneGestionUsuarios" animated="false" text="Gestión de usuarios" textFill="WHITE">
                      <content>
                         <VBox spacing="10.0" style="-fx-background-color: #2C3E50;">
                            <children>
@@ -159,6 +156,6 @@
             </Accordion>
          </children>
       </VBox>
-      <StackPane fx:id="contentPane" layoutX="224.0" layoutY="119.0" prefHeight="603.0" prefWidth="849.0" />
+      <StackPane fx:id="contentPane" layoutX="242.0" layoutY="120.0" prefHeight="603.0" prefWidth="849.0" />
    </children>
 </AnchorPane>

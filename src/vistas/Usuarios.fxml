@@ -22,8 +22,8 @@
       <Label fx:id="etiquetaDepartamento" layoutX="360.0" layoutY="161.0" text="Departamento" />
       <TextField fx:id="nombreUsuario" layoutX="182.0" layoutY="54.0" prefHeight="25.0" prefWidth="150.0" />
       <TextField fx:id="correoUsuario" layoutX="489.0" layoutY="54.0" prefHeight="25.0" prefWidth="139.0" />
-      <TextField fx:id="passUsuario" layoutX="182.0" layoutY="104.0" prefHeight="25.0" prefWidth="150.0" />
-      <TextField fx:id="user" layoutX="489.0" layoutY="104.0" prefHeight="25.0" prefWidth="139.0" />
+      <TextField fx:id="user" layoutX="182.0" layoutY="104.0" prefHeight="25.0" prefWidth="150.0" />
+      <TextField fx:id="passUsuario" layoutX="489.0" layoutY="104.0" prefHeight="25.0" prefWidth="139.0" />
       <ComboBox fx:id="rolUsuario" layoutX="178.0" layoutY="157.0" prefHeight="25.0" prefWidth="150.0" />
       <ComboBox fx:id="departamentoUsuario" layoutX="489.0" layoutY="157.0" prefHeight="25.0" prefWidth="139.0" />
       <Button layoutX="331.0" layoutY="203.0" mnemonicParsing="false" onAction="#guardarUsuario" text="Guardar" />

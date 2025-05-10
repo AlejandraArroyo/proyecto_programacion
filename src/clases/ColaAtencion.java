@@ -12,18 +12,18 @@ import java.util.Queue;
  * @author Alejandra Arroyo
  */
 public class ColaAtencion {
-     private int departamentoId;
+     private int id;
     private Departamento departamento;
     private Queue<Ticket> tickets;
     
-     public ColaAtencion(Departamento departamento) {
+  
+    public ColaAtencion(Departamento departamento) {
         this.departamento = departamento;
-        this.tickets = new LinkedList<>();
     }
 
     
      public void setDepartamentoId(int id) {
-        this.departamentoId = id;
+        this.id = id;
     }
 
     public void agregarTicket(Ticket ticket) {
@@ -47,6 +47,6 @@ public class ColaAtencion {
     }
 
     public int getDepartamentoId() {
-        return departamentoId;
+        return id;
     }
 }

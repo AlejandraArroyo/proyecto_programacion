@@ -24,13 +24,13 @@
       </Label>
       <Label layoutX="42.0" layoutY="55.0" text="Nombre Estado" />
       <Label layoutX="42.0" layoutY="116.0" text="Descripción" />
-      <TextField layoutX="42.0" layoutY="73.0" />
-      <TextArea layoutX="42.0" layoutY="134.0" prefHeight="66.0" prefWidth="181.0" />
+      <TextField fx:id="txtNombreEstado" layoutX="42.0" layoutY="73.0" />
+      <TextArea fx:id="txtDescripcionEstado" layoutX="42.0" layoutY="134.0" prefHeight="66.0" prefWidth="181.0" />
       <Label layoutX="252.0" layoutY="46.0" text="Estado Final" />
-      <ComboBox layoutX="252.0" layoutY="72.0" prefHeight="26.0" prefWidth="107.0" />
+      <ComboBox fx:id="comboSiNO" layoutX="252.0" layoutY="72.0" prefHeight="26.0" prefWidth="107.0" />
       <Label layoutX="255.0" layoutY="125.0" text="Estados Siguientes" />
       <ComboBox layoutX="255.0" layoutY="155.0" prefHeight="26.0" prefWidth="114.0" />
-      <ListView layoutX="394.0" layoutY="51.0" prefHeight="130.0" prefWidth="132.0" />
+      <ListView fx:id="listEstadosSeleccionados" layoutX="394.0" layoutY="51.0" prefHeight="130.0" prefWidth="132.0" />
       <TableView layoutX="61.0" layoutY="249.0" prefHeight="236.0" prefWidth="546.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
