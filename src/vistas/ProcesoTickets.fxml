@@ -6,22 +6,42 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
+<?import javafx.scene.control.*?>
 <AnchorPane id="AnchorPane" prefHeight="515.0" prefWidth="674.0" style="-fx-background-color: #d0e1e2;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProcesoTicketsController">
     <stylesheets>
         <URL value="@/css/procesotickets.css" />
     </stylesheets>
    <children>
-      <TableView layoutX="40.0" layoutY="119.0" prefHeight="336.0" prefWidth="490.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
-      <Label layoutX="272.0" layoutY="28.0" text="Mis Tickets">
+      <!-- Título -->
+      <Label layoutX="210.0" layoutY="20.0" text="Tickets En Proceso">
          <font>
             <Font name="Microsoft JhengHei Light" size="27.0" />
          </font>
       </Label>
+
+      <!-- Tabla de Tickets -->
+      <TableView fx:id="tablaMisTickets" layoutX="40.0" layoutY="70.0" prefHeight="200.0" prefWidth="590.0">
+         <columns>
+            <TableColumn fx:id="colTitulo" prefWidth="150.0" text="Título" />
+            <TableColumn fx:id="colEstado" prefWidth="100.0" text="Estado" />
+            <TableColumn fx:id="colPrioridad" prefWidth="100.0" text="Prioridad" />
+            <TableColumn fx:id="colFecha" prefWidth="150.0" text="Fecha Creación" />
+         </columns>
+      </TableView>
+
+     
+      <Label layoutX="40.0" layoutY="280.0" text="Comentario:" />
+      <TextArea fx:id="txtComentario" layoutX="40.0" layoutY="300.0" prefHeight="60.0" prefWidth="300.0" />
+
+    
+      <Label layoutX="370.0" layoutY="280.0" text="Nuevo Estado:" />
+      <ComboBox fx:id="comboEstados" layoutX="370.0" layoutY="300.0" prefWidth="200.0" />
+
+      
+      <Button fx:id="btnAdjuntar" layoutX="40.0" layoutY="380.0" text="📎 Adjuntar Archivo" onAction="#seleccionarArchivo"  />
+
+    
+      <Button fx:id="btnActualizar" layoutX="180.0" layoutY="430.0" text="Actualizar Ticket" onAction="#actualizarTicket" />
+      <Button fx:id="btnCerrar" layoutX="330.0" layoutY="430.0" text="Cerrar Ticket" onAction="#cerrarTicket" />
    </children>
 </AnchorPane>

@@ -8,7 +8,7 @@ package clases;
  *
  * @author Alejandra Arroyo
  */
-public class EstadoTicket {
+public class EstadoTicket  {
      private int id;
     private String nombre;
     private String descripcion;
@@ -20,6 +20,11 @@ public class EstadoTicket {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 
     public String getNombre() {
@@ -47,4 +52,7 @@ public class EstadoTicket {
     }
     
     public boolean isFinal() { return esFinal; }
+    
+    
+    
 }

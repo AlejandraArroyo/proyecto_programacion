@@ -6,6 +6,8 @@ package controllers;
 
 import clases.Dao;
 import clases.Departamento;
+import clases.Sesion;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -15,7 +17,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -25,6 +30,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -84,11 +90,13 @@ public class DepartamentosController implements Initializable {
         if (departamentoEditando == null) {
             Departamento nuevo = new Departamento(nombre, descripcion);
             Dao.insertarDepartamento(nuevo);
+             Dao.registrarBitacora(Sesion.getUsuarioActual(), "Nuevo departamento: " +nombre , "Departamentos", "D");
             Utils.mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Departamento guardado correctamente.");
         } else {
             departamentoEditando.setNombre(nombre);
             departamentoEditando.setDescripcion(descripcion);
             Dao.actualizarDepartamento(departamentoEditando);
+             Dao.registrarBitacora(Sesion.getUsuarioActual(), "Actualización departamento: " +nombre , "Departamentos", "D");
             Utils.mostrarAlerta(Alert.AlertType.INFORMATION, "Actualizado", "Departamento editado correctamente.");
             departamentoEditando = null;
         }
@@ -143,6 +151,7 @@ public class DepartamentosController implements Initializable {
         alerta.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 Dao.eliminarDepartamento(departamento.getId());
+                 Dao.registrarBitacora(Sesion.getUsuarioActual(), "Elimino departamento: " + departamento.getId(), "Departamentos", "D");
                 Utils.mostrarAlerta(Alert.AlertType.INFORMATION, "Eliminado", "Departamento exitosamente.");
                 cargarDepartamentos();
             }
@@ -159,5 +168,24 @@ public class DepartamentosController implements Initializable {
         tituloDep.clear();
         descDep.clear();
         departamentoEditando = null;
+    }
+
+    @FXML
+    private void verHistorial(ActionEvent event) {
+        
+              try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/Bitacora.fxml"));
+        Parent root = loader.load();
+
+        BitacoraController controller = loader.getController();
+        controller.setModuloFiltro("Departamentos");
+
+        Stage stage = new Stage();
+        stage.setTitle("Historial de cambios");
+        stage.setScene(new Scene(root));
+        stage.show();
+    } catch (IOException e) {
+        System.err.println("Error al abrir historial: " + e.getMessage());
+    }
     }
 }

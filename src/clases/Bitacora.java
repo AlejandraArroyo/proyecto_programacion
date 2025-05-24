@@ -4,7 +4,8 @@
  */
 package clases;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
+
 
 /**
  *
@@ -70,8 +71,9 @@ public class Bitacora {
         return fecha;
     }
 
-    public void setFecha(Timestamp fecha) {
-        this.fecha = fecha;
-    }
+   public void setFecha(Timestamp fecha) {
+    this.fecha = fecha;
+}
+
 
 }

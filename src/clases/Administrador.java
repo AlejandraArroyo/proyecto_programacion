@@ -15,7 +15,7 @@ public class Administrador extends Persona{
                          String contraseña, Rol rol) {
         super(nombreCompleto, correo, nombreUsuario, contraseña, rol);
 
-        if (!rol.getNombre().equalsIgnoreCase("Administrador")) {
+        if (!rol.getNombre().equalsIgnoreCase("admin")) {
             throw new IllegalArgumentException("El rol asignado no es válido para un Administrador.");
         }
     }

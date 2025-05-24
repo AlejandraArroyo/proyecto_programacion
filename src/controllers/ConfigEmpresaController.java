@@ -15,9 +15,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -160,34 +164,34 @@ private void guardarConfig(ActionEvent event) {
     }
 
     try {
-        byte[] logoBytes = java.nio.file.Files.readAllBytes(logoEmpresa.toPath());
+    byte[] logoBytes = java.nio.file.Files.readAllBytes(logoEmpresa.toPath());
 
-        ConfigEmpresa config = new ConfigEmpresa();
-        config.setNombre(nombreEmpresa);
-        config.setLogoEmpresa(logoBytes);
-        config.setNombreArchivoLogo(logoEmpresa.getName());
-        config.setIdioma(idioma);
-        config.setZonaHoraria(zonaHoraria);
-        config.setVencimiento(vencimiento);
+    ConfigEmpresa config = new ConfigEmpresa();
+    config.setNombre(nombreEmpresa);
+    config.setLogoEmpresa(logoBytes);
+    config.setNombreArchivoLogo(logoEmpresa.getName());
+    config.setIdioma(idioma);
+    config.setZonaHoraria(zonaHoraria);
+    config.setVencimiento(vencimiento);
 
-       
-        Dao.guardarOActualizarConfiguracion(config);
+    // Guardar configuración general
+    Dao.guardarOActualizarConfiguracion(config);
 
-      
-        Dao.eliminarTodosNivelesPrioridad();
-        for (String prioridad : listPrioridades.getItems()) {
-            Dao.insertarPrioridad(prioridad);
-        }
-
-     
-        Dao.registrarBitacora(Sesion.getUsuarioActual(), "Configuró parámetros del sistema", "Configuración Empresa", "U");
-
-        Utils.mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "La configuración se ha guardado correctamente.");
-
-    } catch (Exception e) {
-        e.printStackTrace();
-        Utils.mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo guardar la configuración.");
+    
+    for (String prioridad : listPrioridades.getItems()) {
+        Dao.insertarPrioridadSiNoExiste(prioridad); 
     }
+
+   
+    Dao.registrarBitacora(Sesion.getUsuarioActual(), "Configuró parámetros del sistema", "Configuración Empresa", "U");
+
+    Utils.mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "La configuración se ha guardado correctamente.");
+
+} catch (Exception e) {
+    e.printStackTrace();
+    Utils.mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo guardar la configuración.");
+}
+
 }
     
     
@@ -217,7 +221,23 @@ private void agregarPrioridad(ActionEvent event) {
 }
     
     
-    
+    @FXML
+private void verHistorial(ActionEvent event) {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/Bitacora.fxml"));
+        Parent root = loader.load();
+
+        BitacoraController controller = loader.getController();
+        controller.setModuloFiltro("Configuración Empresa");
+
+        Stage stage = new Stage();
+        stage.setTitle("Historial de cambios");
+        stage.setScene(new Scene(root));
+        stage.show();
+    } catch (IOException e) {
+        System.err.println("Error al abrir historial: " + e.getMessage());
+    }
+}
     
 
 }

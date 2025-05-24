@@ -28,8 +28,9 @@
       <Label layoutX="339.0" layoutY="84.0" text="Permisos a Asignar" />
       <ListView fx:id="listaPermisos" layoutX="339.0" layoutY="111.0" prefHeight="144.0" prefWidth="191.0" />
       <Button layoutX="548.0" layoutY="183.0" mnemonicParsing="false" onAction="#guardarRol" text="Guardar" />
-      <Button layoutX="530.0" layoutY="68.0" mnemonicParsing="false" onAction="#mostrarPermisos" text="Crear Permisos" />
-      <TableView fx:id="tablaRoles" layoutX="28.0" layoutY="281.0" prefHeight="253.0" prefWidth="737.0">
+      <Button layoutX="530.0" layoutY="68.0" mnemonicParsing="false" onAction="#mostrarPermisos" text="Ver Permisos" />
+       <Button layoutX="675.0" layoutY="32.0" mnemonicParsing="false" onAction="#verHistorial" text="Ver Historial" />
+      <TableView fx:id="tablaRoles" layoutX="36.0" layoutY="283.0" prefHeight="253.0" prefWidth="737.0">
         <columns>
           <TableColumn fx:id="colNombreRol" prefWidth="109.0" text="Nombre" />
           <TableColumn fx:id="colDescripcionRol" prefWidth="130.0" text="Descripcion" />

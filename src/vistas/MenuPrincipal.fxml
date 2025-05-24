@@ -26,11 +26,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
          <children>
-            <ImageView fitHeight="118.0" fitWidth="358.0" layoutX="424.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/png-transparent-price-reduction-text-cartoon-creative-market-removebg-preview.png" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="imgLogoEmpresa" fitHeight="118.0" fitWidth="358.0" layoutX="424.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
             <Label layoutX="56.0" layoutY="32.0" text="TICKETS">
                <font>
                   <Font name="Microsoft YaHei UI" size="43.0" />
@@ -87,21 +83,17 @@
                      <content>
                         <VBox spacing="10.0" style="-fx-background-color: #2C3E50;">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#CrearUsuario" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Nuevo Usuario" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#CrearUsuario" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Gestionar Usuarios" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Gestionar Usuarios" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Button>
+                              
                            </children>
                         </VBox>
                      </content>
                 </TitledPane>
-                <TitledPane animated="false" text="Configuración de Tickets" textFill="WHITE">
+                <TitledPane fx:id="paneConfigTickets" animated="false" text="Configuración de Tickets" textFill="WHITE">
                      <content>
                         <VBox spacing="10.0" style="-fx-background-color: #2C3E50;">
                            <children>
@@ -123,27 +115,27 @@
                      <content>
                         <VBox style="-fx-background-color: #2C3E50;">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#colaAtencion" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Cola de Atención" textFill="WHITE">
+                              <Button fx:id="btnCola"  mnemonicParsing="false" onAction="#colaAtencion" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Cola de Atención" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#crearTicket" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Crear Ticket" textFill="WHITE">
+                              <Button fx:id="bntCrearTicket" mnemonicParsing="false" onAction="#crearTicket" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Crear Ticket" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#ticketUsuario" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Mis Tickets" textFill="WHITE">
+                              <Button fx:id="btnTickets" mnemonicParsing="false" onAction="#ticketUsuario" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Mis Tickets" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#ticketProceso" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Tickets en Proceso" textFill="WHITE">
+                              <Button  fx:id="btnTicketProceso" mnemonicParsing="false" onAction="#ticketProceso" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Tickets en Proceso" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#gestionarTickets" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Gestión de tickets" textFill="WHITE">
+                              <Button fx:id="btnGestionTicket" mnemonicParsing="false" onAction="#gestionarTickets" prefHeight="36.0" prefWidth="195.0" style="-fx-background-color: #2C3E50;" text="Gestión de tickets" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>

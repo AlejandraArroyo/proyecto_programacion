@@ -217,5 +217,26 @@ private void guardarRol(ActionEvent event) {
     });
 }
 
+    @FXML
+    private void verHistorial(ActionEvent event) {
+        
+         try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/Bitacora.fxml"));
+        Parent root = loader.load();
+
+        BitacoraController controller = loader.getController();
+        controller.setModuloFiltro("Roles y Permisos");
+
+        Stage stage = new Stage();
+        stage.setTitle("Historial de cambios");
+        stage.setScene(new Scene(root));
+        stage.show();
+    } catch (IOException e) {
+        System.err.println("Error al abrir historial: " + e.getMessage());
+    }
+         
+         
+    }
+
 
 }

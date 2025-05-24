@@ -4,11 +4,17 @@
  */
 package controllers;
 
+import clases.ConfigEmpresa;
+import clases.Dao;
 import clases.Persona;
 import clases.ServicioColas;
 import clases.Sesion;
+import clases.Ticket;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
+import java.util.Queue;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +28,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -52,6 +60,20 @@ public class MenuPrincipalController implements Initializable {
     private Button btnDepartamentos;
     @FXML
     private TitledPane paneConfig;
+    @FXML
+    private TitledPane paneConfigTickets;
+    @FXML
+    private Button btnCola;
+    @FXML
+    private Button bntCrearTicket;
+    @FXML
+    private Button btnTickets;
+    @FXML
+    private Button btnTicketProceso;
+    @FXML
+    private Button btnGestionTicket;
+    @FXML
+    private ImageView imgLogoEmpresa;
 
     /**
      * Initializes the controller class.
@@ -73,6 +95,14 @@ public class MenuPrincipalController implements Initializable {
           if (!UtilsPermiso.tienePermiso("Gestionar departamentos") && !UtilsPermiso.tienePermiso("Configurar parámetros del sistema") && !UtilsPermiso.tienePermiso("Gestionar roles") ) {
                       miAccordion.getPanes().remove(paneConfig);
         }
+          
+          
+          
+          if (!UtilsPermiso.tienePermiso("Gestionar Estados Ticket") && !UtilsPermiso.tienePermiso("Gestionar flujos de trabajo")  ) {
+                      miAccordion.getPanes().remove(paneConfigTickets);
+        }
+          
+          
 
         if (!UtilsPermiso.tienePermiso("Configurar parámetros del sistema")) {
             btnEmpresa.setVisible(false);
@@ -91,8 +121,53 @@ public class MenuPrincipalController implements Initializable {
         }
            
            
+            if (!UtilsPermiso.tienePermiso("Cola de Atencion")) {
+            btnCola.setVisible(false);
+            btnCola.setManaged(false);
+        }
            
+            
+                if (!UtilsPermiso.tienePermiso("Tickets en Proceso")) {
+            btnTicketProceso.setVisible(false);
+            btnTicketProceso.setManaged(false);
+        }
+                
+                
+                       if (!UtilsPermiso.tienePermiso("Crear tickets")) {
+            bntCrearTicket.setVisible(false);
+            bntCrearTicket.setManaged(false);
+        }
            
+                       
+                       
+                       if (!UtilsPermiso.tienePermiso("Tickets Usuario")) {
+            btnTickets.setVisible(false);
+            btnTickets.setManaged(false);
+        }
+     
+                       
+                          if (!UtilsPermiso.tienePermiso("Gestión de Tickets")) {
+            btnGestionTicket.setVisible(false);
+            btnGestionTicket.setManaged(false);
+        }
+           
+          
+          Dao.cargarColasDesdeBaseDatoss();
+          
+                System.out.println("Total de colas creadas: " + ServicioColas.colasPorDepartamento.size());
+
+for (Map.Entry<Integer, Queue<Ticket>> entry : ServicioColas.colasPorDepartamento.entrySet()) {
+    System.out.println("Departamento ID: " + entry.getKey() + " | Tickets en cola: " + entry.getValue().size());
+}
+
+
+ ConfigEmpresa config = Dao.obtenerConfiguracion();
+    if (config != null && config.getLogoEmpresa() != null) {
+        Image logo = new Image(new ByteArrayInputStream(config.getLogoEmpresa()));
+        imgLogoEmpresa.setImage(logo);
+    } else {
+        System.out.println("No hay logo configurado.");
+    }
            
       
 
@@ -156,6 +231,8 @@ public class MenuPrincipalController implements Initializable {
 
     @FXML
     private void gestionarTickets(ActionEvent event) {
+        
+        cargarVista("/vistas/GestionTickets.fxml");
     }
 
     @FXML

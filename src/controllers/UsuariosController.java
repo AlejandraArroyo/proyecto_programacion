@@ -21,15 +21,20 @@ import clases.Persona;
 import clases.Sesion;
 import clases.Tecnico;
 import clases.Usuario;
+import java.io.IOException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -290,6 +295,26 @@ public class UsuariosController implements Initializable {
             departamentoUsuario.setVisible(false);
             etiquetaDepartamento.setVisible(false);
         }
+    }
+
+    @FXML
+    private void verHistorial(ActionEvent event) {
+        
+              try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/Bitacora.fxml"));
+        Parent root = loader.load();
+
+        BitacoraController controller = loader.getController();
+        controller.setModuloFiltro("Gestion de Usuarios");
+
+        Stage stage = new Stage();
+        stage.setTitle("Historial de cambios");
+        stage.setScene(new Scene(root));
+        stage.show();
+    } catch (IOException e) {
+        System.err.println("Error al abrir historial: " + e.getMessage());
+    }
+        
     }
 
 }

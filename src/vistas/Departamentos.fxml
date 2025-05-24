@@ -29,7 +29,7 @@
         </columns>
       </TableView>
       <Button layoutX="352.0" layoutY="181.0" mnemonicParsing="false" onAction="#saveDepartamentos" prefHeight="25.0" prefWidth="81.0" text="Guardar" />
-      <Button alignment="CENTER_RIGHT" layoutX="616.0" layoutY="18.0" mnemonicParsing="false" text="Ver Historial" />
+      <Button alignment="CENTER_RIGHT" layoutX="616.0" layoutY="18.0" mnemonicParsing="false" text="Ver Historial" onAction="#verHistorial"  />
       <Label layoutX="65.0" layoutY="74.0" text="Nombre" />
       <Label layoutX="65.0" layoutY="119.0" text="Descripción" />
       <TextField fx:id="tituloDep" layoutX="141.0" layoutY="70.0" />

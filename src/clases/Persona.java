@@ -8,7 +8,7 @@ package clases;
  *
  * @author Alejandra Arroyo
  */
-public abstract class  Persona {
+public abstract class  Persona  {
   private String nombre, correo, contra, nombreUsuario;
   private char estado;
   private Rol rol;

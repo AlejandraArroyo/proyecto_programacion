@@ -36,6 +36,6 @@
             <TableColumn fx:id="colAcciones" prefWidth="185.0" text="Acciones" />
         </columns>
       </TableView>
-      <Button layoutX="659.0" layoutY="14.0" mnemonicParsing="false" text="Historial" />
+      <Button layoutX="659.0" layoutY="14.0" mnemonicParsing="false" text="Historial" onAction="#verHistorial" />
    </children>
 </AnchorPane>

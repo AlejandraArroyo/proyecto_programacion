@@ -28,7 +28,7 @@
 
       <Label layoutX="316.0" layoutY="200.0" text="Niveles de Prioridad" />
       <Button fx:id="btnGuardar" layoutX="398.0" layoutY="359.0" mnemonicParsing="false" onAction="#guardarConfig" text="Guardar" />
-      <Button layoutX="482.0" layoutY="359.0" mnemonicParsing="false" text="Ver Historial" />
+      <Button layoutX="482.0" layoutY="359.0" mnemonicParsing="false" text="Ver Historial" onAction="#verHistorial"  />
       <Button layoutX="331.0" layoutY="279.0" mnemonicParsing="false" onAction="#agregarPrioridad" text="Add Nivel" />
       <ListView fx:id="listPrioridades" layoutX="428.0" layoutY="196.0" prefHeight="100.0" prefWidth="151.0" />
       <TextField fx:id="txtPrioridadNueva" layoutX="316.0" layoutY="240.0" prefHeight="25.0" prefWidth="107.0" />

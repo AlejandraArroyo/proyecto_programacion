@@ -7,23 +7,36 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import java.net.URL?>
 
-<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="769.0" style="-fx-background-color: #d0e1e2;" styleClass="mainFxmlClass" stylesheets="@../css/departamentos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CrearTicketController">
-   <children>
-      <Label layoutX="331.0" layoutY="37.0" text="Creación de Tickets">
+<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="769.0" style="-fx-background-color: #d0e1e2;" styleClass="usuarios.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CrearTicketController">
+     <stylesheets>
+        <URL value="@/css/usuarios.css" />
+    </stylesheets>
+    
+    <children>
+      <Label layoutX="280.0" layoutY="25.0" text="Creación de Tickets">
          <font>
             <Font name="Microsoft YaHei Light" size="23.0" />
-         </font></Label>
+         </font>
+      </Label>
+
       <Label layoutX="84.0" layoutY="91.0" text="Título" />
+      <TextField fx:id="txtTitulo" layoutX="245.0" layoutY="87.0" prefWidth="250.0" />
+
       <Label layoutX="85.0" layoutY="155.0" text="Descripción" />
+      <TextArea fx:id="txtDescripcion" layoutX="245.0" layoutY="139.0" prefHeight="100.0" prefWidth="250.0" />
+
       <Label layoutX="86.0" layoutY="266.0" text="Departamento" />
+      <ComboBox fx:id="departamentoAsignado" layoutX="245.0" layoutY="262.0" prefWidth="250.0" />
+
       <Label layoutX="86.0" layoutY="325.0" text="Prioridad" />
+      <ComboBox fx:id="comboPrioridad" layoutX="245.0" layoutY="321.0" prefWidth="250.0" />
+
       <Label layoutX="87.0" layoutY="385.0" text="Adjuntos" />
-      <TextField layoutX="245.0" layoutY="87.0" />
-      <TextArea layoutX="245.0" layoutY="139.0" prefHeight="109.0" prefWidth="173.0" />
-      <ComboBox layoutX="245.0" layoutY="262.0" prefHeight="40.0" prefWidth="173.0" />
-      <ComboBox layoutX="245.0" layoutY="313.0" prefHeight="40.0" prefWidth="173.0" />
-      <Button layoutX="504.0" layoutY="218.0" mnemonicParsing="false" text="Crear Ticket" />
-      <Button fx:id="btnSeleccionarArchivo" layoutX="245.0" layoutY="380.0" mnemonicParsing="false" onAction="#seleccionarArchivo" text="Agregar" />
+      <Button fx:id="btnSeleccionarArchivo" layoutX="245.0" layoutY="380.0" onAction="#seleccionarArchivo" text="Agregar" />
+      <Label fx:id="lblArchivoAdjunto" layoutX="330.0" layoutY="385.0" text="(Ningún archivo seleccionado)" />
+
+      <Button fx:id="btnCrearTicket" layoutX="245.0" layoutY="450.0" onAction="#crearTicket" prefWidth="150.0" text="Crear Ticket" />
    </children>
 </AnchorPane>

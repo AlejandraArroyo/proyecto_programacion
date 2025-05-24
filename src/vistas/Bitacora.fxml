@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="461.0" prefWidth="819.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BitacoraController">
+    <stylesheets>
+        <URL value="@/css/bitacora.css" />
+    </stylesheets>
+     <children>
+        <Label fx:id="lblTitulo" layoutX="20" layoutY="20" text="Historial de cambios" />
+        <TableView fx:id="tablaBitacora" layoutX="26.0" layoutY="50.0" prefHeight="387.0" prefWidth="762.0">
+            <columns>
+                <TableColumn fx:id="colAccion" prefWidth="200" text="Acción" />
+                <TableColumn fx:id="colModulo" prefWidth="199.199951171875" text="Módulo" />
+                <TableColumn fx:id="colPersona" prefWidth="160.80001831054688" text="Usuario" />
+                <TableColumn fx:id="colFecha" prefWidth="201.60001220703123" text="Fecha" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

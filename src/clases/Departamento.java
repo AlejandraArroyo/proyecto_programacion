@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Alejandra Arroyo
  */
-public class Departamento {
+public class Departamento  {
     private String nombre, descripcion;
 
     private int id;

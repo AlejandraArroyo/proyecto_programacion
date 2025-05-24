@@ -1,28 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="466.0" prefWidth="694.0" style="-fx-background-color: #d0e1e2;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="controllers.FlujoTicketsController">
-    <stylesheets>
-        <URL value="@/css/flujotickets.css" />
-    </stylesheets>
-   <children>
-      <Label layoutX="306.0" layoutY="22.0" text="Flujos de Ticket" />
-      <Label layoutX="79.0" layoutY="60.0" text="Nombre" />
-      <Label layoutX="79.0" layoutY="102.0" text="Estados Involucrados" />
-      <Label layoutX="79.0" layoutY="146.0" text="Transiciones" />
-      <Label layoutX="84.0" layoutY="185.0" text="Reglas" />
-      <Label layoutX="88.0" layoutY="225.0" text="Acciones Automáticas" />
-      <TextField layoutX="234.0" layoutY="56.0" />
-      <ComboBox layoutX="234.0" layoutY="98.0" prefWidth="150.0" />
-      <ComboBox layoutX="234.0" layoutY="142.0" prefWidth="150.0" />
-      <TextField layoutX="235.0" layoutY="181.0" />
-      <TextField layoutX="239.0" layoutY="230.0" />
-      <Button layoutX="321.0" layoutY="343.0" mnemonicParsing="false" text="Guardar" />
-   </children>
+<AnchorPane prefHeight="600" prefWidth="800" style="-fx-background-color: #d0e1e2;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="controllers.FlujosTrabajoController">
+    <children>
+
+        <Label layoutX="20" layoutY="20" text="Configuración de Flujos de Trabajo">
+            <font><Font name="System Bold" size="22.0" /></font>
+        </Label>
+
+        <!-- Nombre del flujo -->
+        <Label layoutX="20" layoutY="70" text="Nombre del Flujo:" />
+        <TextField fx:id="txtNombreFlujo" layoutX="150" layoutY="66" prefWidth="200" />
+
+        <!-- Lista de estados involucrados -->
+        <Label layoutX="20" layoutY="110" text="Estados Involucrados:" />
+        <ListView fx:id="listEstados" layoutX="150" layoutY="110" prefHeight="120" prefWidth="200" />
+
+        <!-- Transiciones permitidas -->
+        <Label layoutX="400" layoutY="70" text="Transiciones Permitidas:" />
+        <ComboBox fx:id="comboOrigen" layoutX="400" layoutY="100" prefWidth="150" promptText="Desde" />
+        <ComboBox fx:id="comboDestino" layoutX="560" layoutY="100" prefWidth="150" promptText="Hacia" />
+        <Button layoutX="720" layoutY="100" onAction="#agregarTransicion" text="Agregar" />
+
+        <TableView fx:id="tablaTransiciones" layoutX="400" layoutY="140" prefHeight="180" prefWidth="370">
+            <columns>
+                <TableColumn fx:id="colOrigen" prefWidth="150" text="Desde" />
+                <TableColumn fx:id="colDestino" prefWidth="150" text="Hacia" />
+                <TableColumn fx:id="colRegla" prefWidth="200" text="Regla (opcional)" />
+            </columns>
+        </TableView>
+
+        <!-- Acciones automáticas -->
+        <Label layoutX="20" layoutY="250" text="Acciones Automáticas:" />
+        <CheckBox fx:id="checkNotificar" layoutX="150" layoutY="250" text="Notificar por correo" />
+        <TextField fx:id="txtAccionExtra" layoutX="150" layoutY="280" prefWidth="200" promptText="Otra acción automática" />
+
+        <!-- Botones -->
+        <Button fx:id="btnGuardarFlujo" layoutX="350" layoutY="520" onAction="#guardarFlujo" text="Guardar Flujo" />
+        <Button fx:id="btnCancelar" layoutX="460" layoutY="520" onAction="#limpiar" text="Cancelar" />
+      <Button layoutX="694.0" layoutY="24.0" mnemonicParsing="false" text="Historial" />
+
+    </children>
 </AnchorPane>
