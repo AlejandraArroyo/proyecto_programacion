@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AgregarNotaController">
+     <children>
+       <VBox alignment="TOP_LEFT" spacing="10">
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+            <Label text="Agregar Nota al Ticket" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            <TextArea fx:id="txtContenido" promptText="Escribe aquí tu nota..." prefHeight="100" wrapText="true"/>
+            <HBox spacing="10">
+                <Button text="Seleccionar Archivo" onAction="#seleccionarArchivo"/>
+                <Label fx:id="lblNombreArchivo" text="Sin archivo seleccionado"/>
+            </HBox>
+            <Button text="Guardar Nota" onAction="#guardarNota" maxWidth="120"/>
+        </VBox>
+        
+        
+        
+    </children>
+</AnchorPane>

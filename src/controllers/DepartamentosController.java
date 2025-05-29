@@ -110,37 +110,40 @@ public class DepartamentosController implements Initializable {
         tablaDepartamentos.getItems().addAll(lista);
     }
 
-    private void agregarBotonesDepartamento() {
-        colAcciones.setCellFactory(param -> new TableCell<Departamento, Void>() {
-            private final Button btnEditar = new Button("Editar");
-            private final Button btnEliminar = new Button("Eliminar");
-            private final HBox hbox = new HBox(5, btnEditar, btnEliminar);
+   private void agregarBotonesDepartamento() {
+    colAcciones.setCellFactory(param -> new TableCell<>() {
+        private final Button btnEditar = new Button("Editar");
+        private final Button btnEliminar = new Button("Eliminar");
+        private final Button btnVerTecnicos = new Button("Ver Técnicos");
+        private final HBox hbox = new HBox(5, btnEditar, btnEliminar, btnVerTecnicos);
 
-            {
-                btnEditar.setOnAction(event -> {
-                    Departamento depto = getTableView().getItems().get(getIndex());
-                    editarDepartamento(depto);
-                });
+        {
+            btnEditar.setOnAction(event -> {
+                Departamento depto = getTableView().getItems().get(getIndex());
+                editarDepartamento(depto);
+            });
 
-                btnEliminar.setOnAction(event -> {
-                    Departamento depto = getTableView().getItems().get(getIndex());
-                    eliminarDepartamento(depto);
-                });
+            btnEliminar.setOnAction(event -> {
+                Departamento depto = getTableView().getItems().get(getIndex());
+                eliminarDepartamento(depto);
+            });
 
-                hbox.setStyle("-fx-alignment: center;");
-            }
+            btnVerTecnicos.setOnAction(event -> {
+                Departamento depto = getTableView().getItems().get(getIndex());
+                abrirVentanaTecnicos(depto);
+            });
 
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    setGraphic(hbox);
-                }
-            }
-        });
-    }
+            hbox.setStyle("-fx-alignment: center;");
+        }
+
+        @Override
+        protected void updateItem(Void item, boolean empty) {
+            super.updateItem(item, empty);
+            setGraphic(empty ? null : hbox);
+        }
+    });
+}
+
 
     private void eliminarDepartamento(Departamento departamento) {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -188,4 +191,23 @@ public class DepartamentosController implements Initializable {
         System.err.println("Error al abrir historial: " + e.getMessage());
     }
     }
+    
+    
+    private void abrirVentanaTecnicos(Departamento departamento) {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/TecnicosDepartamento.fxml"));
+        Parent root = loader.load();
+
+        TecnicosDepartamentoController controller = loader.getController();
+        controller.setDepartamento(departamento);
+
+        Stage stage = new Stage();
+        stage.setTitle("Técnicos de " + departamento.getNombre());
+        stage.setScene(new Scene(root));
+        stage.show();
+    } catch (IOException e) {
+        System.err.println("Error al abrir ventana de técnicos: " + e.getMessage());
+    }
+}
+
 }

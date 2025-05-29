@@ -784,7 +784,10 @@ public static int insertarTicket(Ticket ticket) {
            
             Ticket ticketCompleto = obtenerTicketPorId(id);
 
-           
+            if (ticket.getArchivoAdjunto() != null && ticket.getNombreArchivo() != null) {
+                insertarArchivoTicket(id, ticket.getArchivoAdjunto(), ticket.getNombreArchivo());
+            }
+
             int depId = ticket.getDepartamento().getId();
           //  Queue<Ticket> cola = ServicioColas.obtenerCola(depId);
 
@@ -803,6 +806,71 @@ public static int insertarTicket(Ticket ticket) {
         System.err.println("Error al insertar ticket: " + e.getMessage());
     }
     return -1;
+}
+
+public static boolean insertarNota(NotaTicket nota) {
+    String sql = "INSERT INTO ticket_nota (ticket_id, contenido, creado_por, adjunto, nombre_adjunto) VALUES (?, ?, ?, ?, ?)";
+
+    try (Connection conn = Conexion.getConexion();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, nota.getTicketId());
+        ps.setString(2, nota.getContenido());
+        ps.setInt(3, nota.getCreador().getIdentificacion());
+        ps.setBytes(4, nota.getAdjunto());
+        ps.setString(5, nota.getNombreAdjunto());
+
+        int filas = ps.executeUpdate();
+        return filas > 0;
+
+    } catch (SQLException e) {
+        System.err.println("Error al insertar nota: " + e.getMessage());
+        return false;
+    }
+}
+
+
+public static List<String> obtenerNotasPorTicket(int ticketId) {
+    List<String> notas = new ArrayList<>();
+    String sql = "SELECT contenido, fecha_creacion FROM ticket_nota WHERE ticket_id = ? ORDER BY fecha_creacion DESC";
+
+    try (Connection conn = Conexion.getConexion();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, ticketId);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            String linea = "[" + rs.getTimestamp("fecha_creacion").toLocalDateTime() + "] " + rs.getString("contenido");
+            notas.add(linea);
+        }
+
+    } catch (SQLException e) {
+        System.err.println("Error al obtener notas: " + e.getMessage());
+    }
+
+    return notas;
+}
+
+
+
+
+
+public static void insertarArchivoTickets(int ticketId, byte[] archivo, String nombreArchivo) {
+    String sql = "INSERT INTO ticket_archivo (ticket_id, archivo, nombre_archivo) VALUES (?, ?, ?)";
+
+    try (Connection conn = Conexion.getConexion();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, ticketId);
+        ps.setBytes(2, archivo);
+        ps.setString(3, nombreArchivo);
+
+        ps.executeUpdate();
+
+    } catch (SQLException e) {
+        System.err.println("Error al guardar archivo del ticket: " + e.getMessage());
+    }
 }
 
  
@@ -1484,9 +1552,127 @@ public static List<Permisos> listarPermisosTabla() {
 }
 
 
+public static byte[] obtenerArchivo(int ticketId, String nombreArchivo) {
+    String sql = "SELECT archivo FROM ticket_archivo WHERE ticket_id = ? AND nombre_archivo = ?";
+    try (Connection conn = Conexion.getConexion();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, ticketId);
+        ps.setString(2, nombreArchivo);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            return rs.getBytes("archivo");
+        }
+
+    } catch (SQLException e) {
+        System.err.println("Error al obtener archivo: " + e.getMessage());
+    }
+    return null;
+}
 
 
 
+
+public static byte[] obtenerAdjuntoNota(int notaId, String nombreArchivo) {
+    String sql = "SELECT archivo FROM nota_archivo WHERE nota_id = ? AND nombre_archivo = ?";
+
+    try (Connection conn = Conexion.getConexion();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, notaId);
+        ps.setString(2, nombreArchivo);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            return rs.getBytes("archivo");
+        }
+
+    } catch (SQLException e) {
+        System.err.println("Error al obtener archivo adjunto de nota: " + e.getMessage());
+    }
+
+    return null;
+}
+
+public static List<NotaTicket> obtenerNotasPorTickets(int ticketId) {
+    List<NotaTicket> notas = new ArrayList<>();
+    String sql = "SELECT n.id, n.contenido, n.fecha_creacion, n.nombre_adjunto " +
+                 "FROM ticket_nota n WHERE n.ticket_id = ? ORDER BY n.fecha_creacion ASC";
+
+    try (Connection conn = Conexion.getConexion();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setInt(1, ticketId);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            NotaTicket nota = new NotaTicket(
+                rs.getInt("id"),
+                rs.getString("contenido"),
+                rs.getTimestamp("fecha_creacion").toLocalDateTime()
+            );
+            nota.setNombreAdjunto(rs.getString("nombre_adjunto"));
+            notas.add(nota);
+        }
+    } catch (SQLException e) {
+        System.err.println("Error al obtener notas del ticket: " + e.getMessage());
+    }
+
+    return notas;
+}
+
+public static byte[] obtenerAdjuntoNotas(int notaId, String nombreArchivo) {
+    String sql = "SELECT adjunto FROM ticket_nota WHERE id = ? AND nombre_adjunto = ?";
+    try (Connection conn = Conexion.getConexion();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setInt(1, notaId);
+        ps.setString(2, nombreArchivo);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            return rs.getBytes("adjunto");
+        }
+    } catch (SQLException e) {
+        System.err.println("Error al obtener archivo adjunto de nota: " + e.getMessage());
+    }
+
+    return null;
+}
+
+
+public static List<Tecnico> obtenerTecnicosPorDepartamento(int departamentoId) {
+    List<Tecnico> lista = new ArrayList<>();
+    String sql = "SELECT * FROM persona WHERE rol_id = (SELECT id FROM rol WHERE LOWER(nombre) = 'tecnico') AND departamento_id = ?";
+
+    try (Connection conn = Conexion.getConexion();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, departamentoId);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Rol rol = new Rol("Técnico", "");
+            rol.setId(rs.getInt("rol_id"));
+            Departamento dep = obtenerDepartamentoPorId(departamentoId);
+
+            Tecnico tecnico = new Tecnico(
+                    rs.getString("nombre"),
+                    rs.getString("correo"),
+                     rs.getString("contra"),
+                    rs.getString("nombre_usuario")
+                   ,
+                    rol,
+                    dep
+            );
+            tecnico.setIdentificacion(rs.getInt("id"));
+            lista.add(tecnico);
+        }
+    } catch (SQLException e) {
+        System.err.println("Error al obtener técnicos del departamento: " + e.getMessage());
+    }
+
+    return lista;
+}
 
 
 }

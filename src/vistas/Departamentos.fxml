@@ -20,16 +20,16 @@
             <Font name="Microsoft JhengHei UI Light" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="tablaDepartamentos" layoutX="48.0" layoutY="255.0" prefHeight="285.0" prefWidth="580.0">
+      <TableView fx:id="tablaDepartamentos" layoutX="48.0" layoutY="255.0" prefHeight="285.0" prefWidth="713.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="35.0" text="ID" />
-          <TableColumn fx:id="colNombre" prefWidth="205.0" text="Nombre" />
-            <TableColumn fx:id="colDescripcion" prefWidth="126.0" text="Descripcion" />
-            <TableColumn fx:id="colAcciones" minWidth="0.0" prefWidth="213.0" text="Acciones" />
+          <TableColumn fx:id="colNombre" prefWidth="157.0" text="Nombre" />
+            <TableColumn fx:id="colDescripcion" prefWidth="209.0" text="Descripcion" />
+            <TableColumn fx:id="colAcciones" minWidth="0.0" prefWidth="311.0" text="Acciones" />
         </columns>
       </TableView>
       <Button layoutX="352.0" layoutY="181.0" mnemonicParsing="false" onAction="#saveDepartamentos" prefHeight="25.0" prefWidth="81.0" text="Guardar" />
-      <Button alignment="CENTER_RIGHT" layoutX="616.0" layoutY="18.0" mnemonicParsing="false" text="Ver Historial" onAction="#verHistorial"  />
+      <Button alignment="CENTER_RIGHT" layoutX="616.0" layoutY="18.0" mnemonicParsing="false" onAction="#verHistorial" text="Ver Historial" />
       <Label layoutX="65.0" layoutY="74.0" text="Nombre" />
       <Label layoutX="65.0" layoutY="119.0" text="Descripción" />
       <TextField fx:id="tituloDep" layoutX="141.0" layoutY="70.0" />

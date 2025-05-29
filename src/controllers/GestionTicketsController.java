@@ -23,9 +23,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -40,6 +43,7 @@ public class GestionTicketsController implements Initializable {
     @FXML private ComboBox<EstadoTicket> comboEstado;
     @FXML private ComboBox<Departamento> comboDepartamento;
   private Ticket ticketSeleccionado;
+   @FXML private TableColumn<Ticket, Void> colAcciones;
    
     /**
      * Initializes the controller class.
@@ -51,6 +55,8 @@ public class GestionTicketsController implements Initializable {
         cargarTickets();
         comboEstado.getItems().addAll(Dao.listarEstados());
         comboDepartamento.getItems().addAll(Dao.listarDepartamentos());
+        
+         agregarBotonesDetalle();
     }    
 
  
@@ -135,6 +141,83 @@ colAsignado.setCellValueFactory(data -> {
         
     }
     
+    
+    
+    private void agregarBotonesDetalle() {
+    colAcciones.setCellFactory(col -> new TableCell<>() {
+        private final Button btnDetalles = new Button("Detalles");
+        private final Button btnNota = new Button("Agregar Nota");
+        private final HBox contenedor = new HBox(5, btnDetalles, btnNota);
+
+        {
+            btnDetalles.setOnAction(e -> {
+                Ticket ticket = getTableView().getItems().get(getIndex());
+                abrirVentanaDetallesConDescarga(ticket);
+            });
+
+            btnNota.setOnAction(e -> {
+                Ticket ticket = getTableView().getItems().get(getIndex());
+                abrirVentanaAgregarNota(ticket);
+            });
+
+            contenedor.setStyle("-fx-alignment: center;");
+        }
+
+        @Override
+        protected void updateItem(Void item, boolean empty) {
+            super.updateItem(item, empty);
+            setGraphic(empty ? null : contenedor);
+        }
+    });
+}
+
+    
+
+    private void abrirVentanaDetallesConDescarga(Ticket ticket) {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/VistaDetalleTicket.fxml"));
+        Parent root = loader.load();
+
+        VistaDetalleTicketController controller = loader.getController();
+        controller.setTicket(ticket);  
+
+        Stage stage = new Stage();
+        stage.setTitle("Detalles del Ticket");
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    } catch (IOException e) {
+        System.err.println("Error al abrir ventana de detalles: " + e.getMessage());
+    }
+}
+
+    
+private void verDetalleTicket(ActionEvent event) {
+    Ticket seleccionado = tablaTickets.getSelectionModel().getSelectedItem();
+    if (seleccionado != null) {
+        abrirVentanaDetallesConDescarga(seleccionado);
+    }
+}
+
+
+
+private void abrirVentanaAgregarNota(Ticket ticket) {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/AgregarNota.fxml"));
+        Parent root = loader.load();
+
+        AgregarNotaController controller = loader.getController();
+        controller.setTicket(ticket);
+
+        Stage stage = new Stage();
+        stage.setTitle("Agregar Nota");
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    } catch (IOException e) {
+        System.err.println("Error al abrir ventana de nota: " + e.getMessage());
+    }
+}
 
 
 

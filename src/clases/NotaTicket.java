@@ -12,26 +12,38 @@ import java.util.List;
  * @author Alejandra Arroyo
  */
 public class NotaTicket {
-    private Ticket ticket;
-    private Persona responsable;
-    private String descripcion;
-    private LocalDateTime fechaHora;
-    private List<Adjuntos> adjuntos;
+    private int id;
+    private int ticketId;
+    private String contenido;
+    private Persona creador;
+    private LocalDateTime fechaCreacion;
+    private byte[] adjunto;
+    private String nombreAdjunto;
 
-    public NotaTicket(Ticket ticket, Persona responsable, String descripcion, List<Adjuntos> adjuntos) {
-        this.ticket = ticket;
-        this.responsable = responsable;
-        this.descripcion = descripcion;
-        this.fechaHora = LocalDateTime.now();
-        this.adjuntos = adjuntos;
-    }
-
-    public void setAdjuntos(List<Adjuntos> adjuntos) {
-        this.adjuntos = adjuntos;
+    public NotaTicket(int ticketId, String contenido, Persona creador, byte[] adjunto, String nombreAdjunto) {
+        this.ticketId = ticketId;
+        this.contenido = contenido;
+        this.creador = creador;
+        this.adjunto = adjunto;
+        this.nombreAdjunto = nombreAdjunto;
     }
     
-    
-    
-    
+     public NotaTicket(int id, String contenido, LocalDateTime fecha) {
+        this.id = id;
+        this.contenido = contenido;
+        this.fechaCreacion = fecha;
+    }
+
+
+    public int getTicketId() { return ticketId; }
+    public String getContenido() { return contenido; }
+    public Persona getCreador() { return creador; }
+    public byte[] getAdjunto() { return adjunto; }
+    public String getNombreAdjunto() { return nombreAdjunto; }
+    public LocalDateTime getFechaCreacion() { return fechaCreacion; }
+    public void setFechaCreacion(LocalDateTime fechaCreacion) { this.fechaCreacion = fechaCreacion; }
+    public void setNombreAdjunto(String nombreAdjunto) {
+    this.nombreAdjunto = nombreAdjunto;
+}
     
 }

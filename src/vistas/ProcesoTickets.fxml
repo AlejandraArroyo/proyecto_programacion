@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.*?>
-<AnchorPane id="AnchorPane" prefHeight="515.0" prefWidth="674.0" style="-fx-background-color: #d0e1e2;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProcesoTicketsController">
+
+<AnchorPane id="AnchorPane" prefHeight="515.0" prefWidth="802.0" style="-fx-background-color: #d0e1e2;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProcesoTicketsController">
     <stylesheets>
         <URL value="@/css/procesotickets.css" />
     </stylesheets>
@@ -19,13 +22,14 @@
          </font>
       </Label>
 
-      <!-- Tabla de Tickets -->
-      <TableView fx:id="tablaMisTickets" layoutX="40.0" layoutY="70.0" prefHeight="200.0" prefWidth="590.0">
+    
+      <TableView fx:id="tablaMisTickets" layoutX="40.0" layoutY="70.0" prefHeight="202.0" prefWidth="744.0">
          <columns>
-            <TableColumn fx:id="colTitulo" prefWidth="150.0" text="Título" />
-            <TableColumn fx:id="colEstado" prefWidth="100.0" text="Estado" />
-            <TableColumn fx:id="colPrioridad" prefWidth="100.0" text="Prioridad" />
-            <TableColumn fx:id="colFecha" prefWidth="150.0" text="Fecha Creación" />
+            <TableColumn fx:id="colTitulo" prefWidth="139.0" text="Título" />
+            <TableColumn fx:id="colEstado" prefWidth="101.0" text="Estado" />
+            <TableColumn fx:id="colPrioridad" prefWidth="103.0" text="Prioridad" />
+            <TableColumn fx:id="colFecha" prefWidth="144.0" text="Fecha Creación" />
+              <TableColumn fx:id="colAcciones" prefWidth="256.0" text="Acciones" />
          </columns>
       </TableView>
 
@@ -38,10 +42,10 @@
       <ComboBox fx:id="comboEstados" layoutX="370.0" layoutY="300.0" prefWidth="200.0" />
 
       
-      <Button fx:id="btnAdjuntar" layoutX="40.0" layoutY="380.0" text="📎 Adjuntar Archivo" onAction="#seleccionarArchivo"  />
+      <Button fx:id="btnAdjuntar" layoutX="40.0" layoutY="380.0" onAction="#seleccionarArchivo" text="📎 Adjuntar Archivo" />
 
     
-      <Button fx:id="btnActualizar" layoutX="180.0" layoutY="430.0" text="Actualizar Ticket" onAction="#actualizarTicket" />
-      <Button fx:id="btnCerrar" layoutX="330.0" layoutY="430.0" text="Cerrar Ticket" onAction="#cerrarTicket" />
+      <Button fx:id="btnActualizar" layoutX="180.0" layoutY="430.0" onAction="#actualizarTicket" text="Actualizar Ticket" />
+      <Button fx:id="btnCerrar" layoutX="330.0" layoutY="430.0" onAction="#cerrarTicket" text="Cerrar Ticket" />
    </children>
 </AnchorPane>

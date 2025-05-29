@@ -17,9 +17,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import clases.Dao;
 import clases.Departamento;
+import clases.EnvioCorreo;
 import clases.Persona;
 import clases.Sesion;
 import clases.Tecnico;
+import clases.Ticket;
 import clases.Usuario;
 import java.io.IOException;
 import javafx.beans.property.SimpleStringProperty;
@@ -219,6 +221,8 @@ public class UsuariosController implements Initializable {
 
             Dao.insertarUsuario(nuevoUsuario);
             Utils.mostrarAlerta(Alert.AlertType.INFORMATION, "Excelente", "Usuario guardado.");
+            
+            EnvioCorreo.enviarCredenciales(correo, nombreDeUsuario, contraseña);
              Dao.registrarBitacora(Sesion.getUsuarioActual(), "Usuario nuevo : " + nombre, "Gestion de Usuarios", "U");
         } else {
             usuarioEditando.setNombre(nombre);
@@ -297,24 +301,5 @@ public class UsuariosController implements Initializable {
         }
     }
 
-    @FXML
-    private void verHistorial(ActionEvent event) {
-        
-              try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/Bitacora.fxml"));
-        Parent root = loader.load();
-
-        BitacoraController controller = loader.getController();
-        controller.setModuloFiltro("Gestion de Usuarios");
-
-        Stage stage = new Stage();
-        stage.setTitle("Historial de cambios");
-        stage.setScene(new Scene(root));
-        stage.show();
-    } catch (IOException e) {
-        System.err.println("Error al abrir historial: " + e.getMessage());
-    }
-        
-    }
-
+ 
 }

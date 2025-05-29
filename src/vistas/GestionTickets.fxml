@@ -22,6 +22,7 @@
                 <TableColumn fx:id="colCreador" prefWidth="100" text="Creador" />
                 <TableColumn fx:id="colAsignado" prefWidth="100" text="Asignado A" />
                 <TableColumn fx:id="colFecha" prefWidth="150" text="Fecha" />
+                 <TableColumn fx:id="colAcciones" prefWidth="256.0" text="Acciones" />
             </columns>
         </TableView>
 

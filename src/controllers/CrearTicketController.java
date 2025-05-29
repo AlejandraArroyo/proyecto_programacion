@@ -6,7 +6,9 @@ package controllers;
 
 import clases.Dao;
 import clases.Departamento;
+import clases.EnvioCorreoTicket;
 import clases.NivelPrioridad;
+import clases.Persona;
 import clases.Sesion;
 import clases.Ticket;
 import java.io.File;
@@ -102,6 +104,19 @@ if (ticketId > 0) {
     Dao.agregarTicketACola(ticketId, nuevo.getDepartamento().getId(), nuevo.getFechaCreacion());
     Dao.insertarHistorialEstado(ticketId, nuevo.getEstado(), "Creación de ticket");
     Utils.mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Ticket creado exitosamente.");
+    
+    
+    Persona creador = Dao.obtenerPersonaPorId(nuevo.getCreador().getIdentificacion());
+String asunto = "Confirmación de Creación de Ticket";
+String mensaje = "<h2>Ticket creado exitosamente</h2>" +
+                 "<p><strong>Título:</strong> " + nuevo.getTitulo() + "</p>" +
+                 "<p><strong>Descripción:</strong> " + nuevo.getDescripcion() + "</p>" +
+                 "<p>Su ticket ha sido registrado y será atendido próximamente.</p>";
+
+EnvioCorreoTicket.enviarTicket(creador.getCorreo(), creador.getNombre(), mensaje);
+    
+    
+    
    
 } else {
     Utils.mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo guardar el ticket.");
